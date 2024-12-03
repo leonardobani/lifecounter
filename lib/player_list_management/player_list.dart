@@ -47,6 +47,37 @@ class PlayerList extends StatelessWidget {
       appBar: AppBar(
         leading: const Icon(Icons.monitor_heart_outlined),
         title: const Text('Life Counter'),
+        actions: [
+          IconButton(onPressed: () {
+            showDialog(
+              context: context,
+              builder: (context) {
+                return AlertDialog(
+                  title: const Text('How it works'),
+                  content: const Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("To add a new player just tap the floating button at the bottom to add a new player"),
+                      SizedBox(height: 10,),
+                      Text("To edit player info just long press the player tag"),
+                      SizedBox(height: 10,),
+                      Text("To delete a player just wipe it out from the screen with an horizzontal movement"),
+                      SizedBox(height: 10,),
+                      Text("To send a feedback head to leonardobani.dev - Thanks <3")
+                    ],
+                  ),
+                  actions: [
+                    TextButton(
+                      onPressed: () => Navigator.pop(context),
+                      child: const Text('Close'),
+                    ),
+                  ],
+                );
+              },
+            );
+          }, icon: const Icon(Icons.help_outline_outlined))
+        ],
       ),
       body: ListView.builder(
         itemCount: playerListController.players.length,
